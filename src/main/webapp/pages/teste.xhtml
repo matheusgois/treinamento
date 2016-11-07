@@ -11,16 +11,12 @@
 </h:head>
 <h:body>
 	<h:form>
-		<p:outputLabel value="Nome" />
-		<p:inputText  value="#{agenteMB.agente.nome}"/><br/><br/>
-		<p:outputLabel value="Tempo"/>
-		<p:inputText value="#{agenteMB.agente.tempoServico}"/><br/><br/>
-		<p:outputLabel value="Data"/>
-		<p:calendar value="#{agenteMB.agente.dtContratacao}"/><br/><br/>
-
-
-		<p:commandButton value="Chamar Bean" action="#{agenteMB.tela()}"></p:commandButton>
-
+		<h:outputLabel value="Nome" /><br/>
+		<p:outputLabel value="#{agenteMB.agente.nome}" /><br/>
+		<h:outputLabel value="Tempo" /><br/>
+		<p:outputLabel value="#{agenteMB.agente.tempoServico}" > </p:outputLabel><br/>
+		<h:outputLabel value="Data" /><br/>
+		<p:outputLabel value="#{agenteMB.agente.dtContratacao}" ><f:convertDateTime type="date" locale="pt_BR" pattern="MM/dd/yyyy"/></p:outputLabel> <br/>
 	</h:form>
 </h:body>
 </html>
