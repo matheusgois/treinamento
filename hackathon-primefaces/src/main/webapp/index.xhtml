@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<h:form>
+		<p:panel header="Infração">
+
+
+			<p:outputLabel value="Agente: " />
+			<p:autoComplete id="nomeAgente" value="#{agenteMB.agente.nome}"
+				completeMethod="#{agenteMB.agentes.set(agenteMB.agente.nome)}" disabled="true" />
+				
+				
+
+			<p:commandButton value="Adicionar" type="button"
+				onclick="PF('dlg5').show();" />
+			<p:dialog header="Adicionar Agente" widgetVar="dlg5" modal="true"
+				height="250">
+
+
+				<p:dataTable id="agentesDT" var="agentes"
+					value="#{agenteMB.agentes}" selectionMode="single"
+					selection="#{dtSelectionView.selectedCar}" rowKey="#{car.id}">
+					<f:facet name="Agentes">
+           					 Agentes
+        			</f:facet>
+					<p:ajax event="rowSelect" listener="#{agenteMB.onRowSelect()}" />
+					<p:ajax event="rowUnselect"
+						listener="#{agenteMB.agentes}" />
+					<p:column headerText="Id">
+						<h:outputText value="#{agenteMB.agente.idAgente}" />
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText value="#{agenteMB.agente.nome}" />
+					</p:column>
+					<p:column headerText="Tempo de Contratação">
+						<h:outputText value="#{agenteMB.agente.tempoServico}" />
+					</p:column>
+					<p:column headerText="Data">
+						<h:outputText value="#{agenteMB.agente.dtContratacao}" />
+					</p:column>
+				</p:dataTable>
+			</p:dialog>
+			<p:commandButton value="Cadastrar" type="button"
+				onclick="PF('dlg2').show();" />
+			<br />
+			<br />
+
+			<p:dialog header="Novo Agente" widgetVar="dlg2" modal="true"
+				height="250">
+
+				<p:panel header="Cadastrar Agente">
+					<p:outputLabel value="Nome" />
+					<p:inputText value="#{agenteMB.agente.nome}" />
+					<br />
+					<br />
+					<p:outputLabel value="Tempo" />
+					<p:inputText value="#{agenteMB.agente.tempoServico}" />
+					<br />
+					<br />
+					<p:outputLabel value="Data" />
+					<p:calendar value="#{agenteMB.agente.dtContratacao}" />
+					<br />
+					<br />
+
+
+					<p:commandButton value="Cadastrar" action="#{agenteMB.tela()}"
+						onsuccess="PF('dlg2').hide();"></p:commandButton>
+				</p:panel>
+			</p:dialog>
+
+			<p:outputLabel value="Placa: " />
+			<p:autoComplete id="idPlaca" value="#{veiculoMB.modelo.idModelo}" disabled="true" />
+
+			<p:commandButton value="Cadastrar Novo Veículo" type="button"
+				onclick="PF('dlg3').show();" />
+
+
+			<p:dialog header="Novo Veículo" widgetVar="dlg3" modal="true"
+				height="250">
+
+				<p:panel header="Cadastrar Veículo">
+					<p:outputLabel value="Placa" />
+					<p:inputText value="#{veiculoMB.veiculo.placa}" />
+					<br />
+					<br />
+					<p:outputLabel value="CPF Proprietario" />
+					<p:inputText value="#{veiculoMB.veiculo.cpfProprietario}" />
+					<br />
+					<br />
+					<p:outputLabel value="UF" />
+					<p:inputText value="#{veiculoMB.veiculo.uf}" />
+					<br />
+					<br />
+
+					<br />
+					<br />
+					<p:commandButton value="Cadastrar" action="#{veiculoMB.tela()}"
+						onsuccess="PF('dlg3').hide();"></p:commandButton>
+
+				</p:panel>
+
+			</p:dialog>
+			<br />
+			<br />
+			<br />
+			<p:outputLabel value="Velocidade:    " />
+			<p:inputText value="#{infracoesMB.infracoes.velocidade}" />
+			<br />
+			<br />
+			<p:outputLabel value="Local:    " />
+			<p:inputText value="#{localMB.local.descricaoLocalInfracao}" />
+
+			<p:commandButton value="Cadastrar Novo Local" type="button"
+				onclick="PF('dlg4').show();" />
+
+
+			<p:dialog header="Adicionar Local" widgetVar="dlg4" modal="true"
+				height="250">
+				<p:outputLabel value=" Velocidade Permitida:    " />
+				<p:inputText value="#{localMB.local.velocidadePermitida}" />
+
+
+				<br />
+				<br />
+				<br />
+
+				<p:outputLabel value=" Valor:   " />
+				<p:inputText value="#{tipoinfMB.tipoInfracao.valor}" />
+				<br />
+				<br />
+				<p:outputLabel value=" Descrição da Infração:   " />
+				<p:inputText value="#{tipoinfMB.tipoInfracao.descricaoTipoInfracao}" />
+				<br />
+				<br />
+				<p:commandButton value="Cadastrar" action="#{agenteMB.tela()}"
+					onsuccess="PF('dlg4').hide();"></p:commandButton>
+
+
+			</p:dialog>
+			<br />
+			<br />
+			<p:commandButton value="Adicionar Infração" />
+
+
+		</p:panel>
+
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<h:form>
+		<h:outputLabel value="Nome" />
+		<br />
+		<p:outputLabel value="#{agenteMB.agente.nome}" />
+		<br />
+		<h:outputLabel value="Tempo" />
+		<br />
+		<p:outputLabel value="#{agenteMB.agente.tempoServico}">
+		</p:outputLabel>
+		<br />
+		<h:outputLabel value="Data" />
+		<br />
+		<p:outputLabel value="#{agenteMB.agente.dtContratacao}">
+			<f:convertDateTime type="date" locale="pt_BR" pattern="MM/dd/yyyy" />
+		</p:outputLabel>
+		<br />
+
+		 <p:dataTable var="Ocorrencias" value="#{agenteMB.agente}">
+			<p:column headerText="Id">
+				<h:outputText value="#{agenteMB.agente.idAgente}" />
+			</p:column>
+
+			<p:column headerText="Nome">
+				<h:outputText value="#{agenteMB.agente.nome}" />
+			</p:column>
+
+			<p:column headerText="Tempo">
+				<h:outputText value="#{agenteMB.agente.tempoServico}" />
+			</p:column>
+
+			<p:column headerText="Data Contratação">
+				<h:outputText value="#{agenteMB.agente.dtContratacao}" />
+			</p:column>
+		</p:dataTable> 
+
+
+
+	</h:form>
+</h:body>
+</html>
